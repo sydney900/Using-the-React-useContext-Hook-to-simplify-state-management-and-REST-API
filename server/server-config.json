@@ -1,0 +1,8 @@
+{
+    "mongodb": {
+        "url": "mongodb://localhost/mydb"
+    },
+    "server": {
+        "port": 3001
+    }
+}
