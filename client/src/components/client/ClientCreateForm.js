@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 const schema = yup.object().shape({
   name: yup
     .string()
-    .min(3)
+    .min(2)
     .max(30)
     .required(),
   password: yup

@@ -39,6 +39,10 @@ const ClientContextContainer = props => {
     props.deleteClient(id);
   };
 
+  const resetError = () => {
+    props.resetError();
+  };
+
   return (
     <ClientContext.Provider
       value={{
