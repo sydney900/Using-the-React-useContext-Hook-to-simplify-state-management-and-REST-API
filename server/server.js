@@ -5,7 +5,12 @@ var express = require("express"),
   Client = require("./models/client"), //created model loading here
   Product = require("./models/product"), //created model loading here
   bodyParser = require("body-parser"),
-  config = require("./server-config.json");
+  config = require("./server-config.json"),
+  process = require("process");
+
+if (process.pid) {
+  console.log("This process is your pid " + process.pid);
+}
 
 var port = process.env.PORT || config.server.port || 3001;
 var dbUrl =

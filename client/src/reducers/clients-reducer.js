@@ -7,7 +7,8 @@ import {
   ADD_CLIENT_FAILURE,
   DELETE_CLIENT,
   DELETE_CLIENT_SUCCESS,
-  DELETE_CLIENT_FAILURE
+  DELETE_CLIENT_FAILURE,
+  RESET_ERROR
 } from "../actions/clients-actions";
 import { stat } from "fs";
 
@@ -48,6 +49,19 @@ export default (state = INITIAL_STATE, action) => {
           loading: false
         }
       };
+    case DELETE_CLIENT_FAILURE:
+    case ADD_CLIENT_FAILURE:
+      error = action.payload.message;
+      const errDetail =
+        action.payload.response && action.payload.response.message;
+      return {
+        ...state,
+        clientsList: {
+          clients: state.clientsList.clients,
+          error: error + (errDetail ? ": " + errDetail : ""),
+          loading: state.clientsList.loading
+        }
+      };
     case DELETE_CLIENT_SUCCESS:
       const clients = state.clientsList.clients.filter(client => {
         return client.id !== action.payload.id;
@@ -56,6 +70,17 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         clientsList: { clients: clients, error: null, loading: false }
       };
+
+    case RESET_ERROR:
+      return {
+        ...state,
+        clientsList: {
+          clients: state.clientsList.clients,
+          error: null,
+          loading: state.clientsList.loading
+        }
+      };
+
     default:
       return state;
   }

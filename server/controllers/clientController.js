@@ -1,6 +1,7 @@
 "use strict";
 
 //require("../models/client");
+const clientValidator = require("../validators/client-validators");
 
 var mongoose = require("mongoose"),
   Client = mongoose.model("Client");
@@ -15,9 +16,16 @@ exports.get_all_clients = function(req, res) {
 };
 
 exports.create_client = function(req, res) {
+  const { error } = clientValidator.validate(req.body);
+  if (error) {
+    res.status(400).json({ message: error.message });
+    return;
+  }
+
   var new_client = new Client(req.body);
   new_client.save(function(err, client) {
     if (err) {
+      //
       res.status(400).send(err);
     }
     res.json(client);

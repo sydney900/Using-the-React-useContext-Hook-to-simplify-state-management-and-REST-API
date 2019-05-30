@@ -7,6 +7,8 @@ import "./App.css";
 import Notfound from "./components/common/Notfound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
+import ErrorFromContext from "./components/common/ErrorFromContext";
 //import ClientList from "./components/client/ClientList";
 import ClientList from "./components/client/ClientList";
 import ClientContextContainer from "./containers/ClientContextContainer";
@@ -22,6 +24,7 @@ const App = () => {
         <ClientContextContainer>
           <div className="app">
             <Header logoName="React Hooks Demo" />
+            <ErrorFromContext />
             <Switch>
               {/* <Route exact path="/" component={ClientListContainer} /> */}
               <Route exact path="/" component={ClientList} />

@@ -3,8 +3,6 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 
 const ClientTableContent = ({ clients, deleteClient }) => {
-  const onDeleteClient = id => deleteClient(id);
-
   return (
     <Table striped bordered hover>
       <thead>
@@ -17,7 +15,7 @@ const ClientTableContent = ({ clients, deleteClient }) => {
       </thead>
       <tbody>
         {clients.map(({ id, name, email }) => (
-          <tr>
+          <tr key={id}>
             <td>{id}</td>
             <td>{name}</td>
             <td>{email}</td>

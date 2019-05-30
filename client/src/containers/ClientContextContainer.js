@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import {
   fetchClients,
   addClient,
-  deleteClient
+  deleteClient,
+  resetError
 } from "../actions/clients-actions";
 
 const ClientContext = React.createContext([{}, {}]);
@@ -18,7 +19,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllClients: () => dispatch(fetchClients()),
     addClient: client => dispatch(addClient(client)),
-    deleteClient: id => dispatch(deleteClient(id))
+    deleteClient: id => dispatch(deleteClient(id)),
+    resetError: () => dispatch(resetError())
   };
 };
 
@@ -45,7 +47,8 @@ const ClientContextContainer = props => {
         loading,
         getAllClients,
         addClient,
-        deleteClient
+        deleteClient,
+        resetError
       }}
     >
       {props.children}
